@@ -9,7 +9,7 @@
 <script>
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
-import axios from 'axios'
+import axios from '../axios'
 
 export default {
   name: 'HomeView',
@@ -22,19 +22,16 @@ export default {
     }
   },
   created() {
-    console.log('"das"')
     this.fetchData()
   },
   methods: {
     async fetchData() {
       try {
-        console.log('ASD')
-        const data = await axios.get('https://toteat-dash-backend.herokuapp.com/api/tutorials')
-        this.msg = "axios"
+        await localStorage.setItem('Token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGVjayI6dHJ1ZSwiaWF0IjoxNjY2NTYwNTMwLCJleHAiOjE2NjY2NDY5MzB9.K9eFJBx03zXl72jG9i2mjcWMdbNZfp6o9MbSyv52R18')
+        const data = await axios.get('api/ventas')
         
       } catch (error) {
-        this.msg = "error"
-        console.log('ERROR', error)        
+        this.msg = "error"   
       }
     }
   }
