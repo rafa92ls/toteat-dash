@@ -60,7 +60,7 @@ export default {
         this.setUser(this.usuario);
         this.setToken(data.token);
         localStorage.setItem('Token', data.token)
-        router.push('/about')
+        router.push('/inicio')
 
       } catch (error) {
         console.log(error);
