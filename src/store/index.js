@@ -16,7 +16,8 @@ export default createStore({
   actions: {},
   getters: {
     isLoggedIn(state) {
-      return !!state.token || !!localStorage.getItem('Token')
+      console.log(localStorage.getItem('Token'))
+      return !!state.token || localStorage.getItem('Token') !== 'null'
     },
   },
 });

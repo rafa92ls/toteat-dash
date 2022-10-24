@@ -69,6 +69,11 @@ export default {
         this.isLoading = false
       }
     }
+  },
+  created() {
+    this.setUser(null);
+    this.setToken(null);
+    localStorage.setItem('Token', null)
   }
 }
 </script>

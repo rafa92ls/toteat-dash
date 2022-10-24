@@ -42,7 +42,7 @@ export default {
           hiddenOnCollapse: true
         },
         {
-          href: '/',
+          href: '/inicio',
           title: 'Inicio',
           icon: faIcon({ icon: 'fa-solid fa-circle-play' })
         },
@@ -51,12 +51,12 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-list-ul' }),
           child: [
             {
-              href: '/',
+              href: '/categorias',
               title: 'Totales',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             },
             {
-              href: '/',
+              href: '/categorias/fechas',
               title: 'Por fecha',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
@@ -67,12 +67,12 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-bowl-food' }),
           child: [
             {
-              href: '/',
+              href: '/productos',
               title: 'Totales',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             },
             {
-              href: '/',
+              href: '/productos/fechas',
               title: 'Por fecha',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
@@ -83,12 +83,12 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-location-dot' }),
           child: [
             {
-              href: '/',
+              href: '/zonas',
               title: 'Totales',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             },
             {
-              href: '/',
+              href: '/zonas/fechas',
               title: 'Por fecha',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
@@ -99,23 +99,25 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-users' }),
           child: [
             {
-              href: '/',
+              href: '/personal',
               title: 'Totales',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             },
             {
-              href: '/',
+              href: '/personal/fechas',
               title: 'Por fecha',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
           ]
         },
         {
+          href: '/busqueda-avanzada',
           title: 'Busqueda avanzada',
           icon: faIcon({ icon: 'fa-solid fa-magnifying-glass' }),
         },
         {
           href: '/',
+          onClick: () => console.log('asd'),
           title: 'Salir',
           icon: faIcon({ icon: 'fa-solid fa-right-from-bracket' })
         },
@@ -148,7 +150,7 @@ export default {
   },
   computed: {
     ...mapGetters(['isLoggedIn'])
-  }
+  },
 }
 </script>
 
