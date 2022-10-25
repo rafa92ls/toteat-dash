@@ -4,6 +4,7 @@
     <div id="loginContainer">
       <h1>La pikada de la esquina</h1>
       <p>Bienvenido! - Sistema de Gestión</p>
+      <p v-if="loginError">Usuario o contraseña incorrectos</p>
       <div id="inputsContainer">
         <input v-model="usuario" type="text" name="usuario" placeholder="Usuario (admin)" v-on:keyup.enter="goLogin()">
         <input v-model="pass" type="password" name="pass" placeholder="Contraseña (123456)"
@@ -11,7 +12,6 @@
         <button @click="goLogin()">Entrar</button>
 
       </div>
-      <p v-if="loginError">Usuario o contraseña incorrectos</p>
     </div>
   </div>
 </template>
@@ -52,18 +52,18 @@ export default {
         const { data, status } = await axios.post('/api/login', body)
 
         if (!data.token) {
-          this.setUser(null);
-          this.setToken(null);
-          localStorage.setItem('Token', null)
+          this.setUser(null)
+          this.setToken(null)
+          localStorage.clear()
           return this.loginError = true
         }
-        this.setUser(this.usuario);
-        this.setToken(data.token);
+        this.setUser(this.usuario)
+        this.setToken(data.token)
         localStorage.setItem('Token', data.token)
         router.push('/inicio')
 
       } catch (error) {
-        console.log(error);
+        console.log(error)
 
       } finally {
         this.isLoading = false
@@ -71,9 +71,9 @@ export default {
     }
   },
   created() {
-    this.setUser(null);
-    this.setToken(null);
-    localStorage.setItem('Token', null)
+    this.setUser(null)
+    this.setToken(null)
+    localStorage.clear()
   }
 }
 </script>
@@ -98,12 +98,13 @@ export default {
 
 
 #loginContainer {
+  display: flex;
+  flex-direction: column;
   width: 50%;
-  /* background-color: #3D70B2; */
   background: linear-gradient(118deg, rgba(3, 69, 154, 1) 0%, rgba(165, 240, 255, 1) 100%);
   position: relative;
   height: 50%;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   color: #F5F7FA;
   border-radius: 12px;
@@ -117,7 +118,7 @@ export default {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 80px 0px;
+  padding: 35px 0px;
   align-items: center;
   justify-content: center;
 }

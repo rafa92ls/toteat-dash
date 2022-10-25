@@ -1,15 +1,7 @@
 <template>
-  <sidebar-menu
-    v-model:collapsed="collapsed"
-    :menu="menu"
-    :theme="selectedTheme"
-    :show-one-child="true"
-    v-if="isLoggedIn"
-  />
-  <div
-    id="demo"
-    :class="[{'collapsed' : collapsed}, {'onmobile' : isOnMobile}]"
-  >
+  <sidebar-menu v-model:collapsed="collapsed" :menu="menu" :theme="selectedTheme" :show-one-child="true"
+    v-if="isLoggedIn && routeName !== 'login'" />
+  <div id="demo" :class="[{ 'collapsed': collapsed }, { 'onmobile': isOnMobile }]">
     <div class="demo">
       <div class="container">
         <router-view />
@@ -22,6 +14,7 @@
 import { h, markRaw } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { mapGetters } from 'vuex'
+import { useRouter } from 'vue-router'
 
 const faIcon = (props) => {
   return {
@@ -32,9 +25,10 @@ const faIcon = (props) => {
     })
   }
 }
+
 export default {
   name: 'App',
-  data () {
+  data() {
     return {
       menu: [
         {
@@ -117,7 +111,6 @@ export default {
         },
         {
           href: '/',
-          onClick: () => console.log('asd'),
           title: 'Salir',
           icon: faIcon({ icon: 'fa-solid fa-right-from-bracket' })
         },
@@ -133,12 +126,12 @@ export default {
       isOnMobile: false
     }
   },
-  mounted () {
+  mounted() {
     this.onResize()
     window.addEventListener('resize', this.onResize)
   },
   methods: {
-    onResize () {
+    onResize() {
       if (window.innerWidth <= 767) {
         this.isOnMobile = true
         this.collapsed = true
@@ -149,34 +142,47 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['isLoggedIn'])
+    ...mapGetters(['isLoggedIn']),
+    routeName() {
+      try {
+        return useRouter().currentRoute.value.name        
+      } catch (error) {
+        return null        
+      }
+    }
   },
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600');
+
 body,
 html {
   margin: 0;
   padding: 0;
 }
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 18px;
   background-color: #f2f4f7;
   color: #262626;
 }
+
 #demo {
   padding-left: 290px;
   transition: 0.3s ease;
 }
+
 #demo.collapsed {
   padding-left: 65px;
 }
+
 #demo.onmobile {
   padding-left: 65px;
 }
+
 .sidebar-overlay {
   position: fixed;
   width: 100%;
@@ -187,9 +193,11 @@ body {
   opacity: 0.5;
   z-index: 900;
 }
+
 .demo {
   padding: 50px;
 }
+
 .container {
   max-width: 900px;
 }
