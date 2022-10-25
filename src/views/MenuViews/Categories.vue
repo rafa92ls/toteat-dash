@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Categorías y Productos <span :style="'font-size: 20px'">(totales generales)</span></h1>
+        Acá encontrarás información relacionada con los productos que se venden en el local, donde se hace un desgloce
+        de los montos y cantidades totales vendidas por cada producto, agrupados por categorías. Se muestra
+        la información de todas las ventas registradas hasta el momento.
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
         <br />
@@ -67,6 +70,13 @@ export default {
                         options1: {
                             chart: { id: `${keyCat} $` },
                             xaxis: xAxis,
+                            title: {
+                                text: 'Montos Vendidos ($)',
+                                align: 'center',
+                                style: {
+                                    fontSize: '14px'
+                                }
+                            },
                         },
                         series1: [
                             {
@@ -77,6 +87,13 @@ export default {
                         options2: {
                             chart: { id: `${keyCat} Cantidad` },
                             xaxis: xAxis,
+                            title: {
+                                text: 'Cantidad Vendida',
+                                align: 'center',
+                                style: {
+                                    fontSize: '14px'
+                                }
+                            },
                         },
                         series2: [
                             {

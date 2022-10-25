@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Categorías y Productos por fecha</h1>
+        Acá encontrarás información relacionada con los productos que se venden en el local, donde se hace un desgloce
+        de los montos y cantidades totales vendidas por cada producto, agrupados por categorías. Debes escoger una fecha
+        de inicio y de término para ver la información entre ese periodo de tiempo.
         <hr />
         Fecha inicial:
         <date-picker v-model="date1" />
@@ -84,6 +87,13 @@ export default {
                         options1: {
                             chart: { id: `${keyCat} $` },
                             xaxis: xAxis,
+                            title: {
+                                text: 'Montos Vendidos ($)',
+                                align: 'center',
+                                style: {
+                                    fontSize: '14px'
+                                }
+                            },
                         },
                         series1: [
                             {
@@ -94,6 +104,13 @@ export default {
                         options2: {
                             chart: { id: `${keyCat} Cantidad` },
                             xaxis: xAxis,
+                            title: {
+                                text: 'Cantidad Vendida',
+                                align: 'center',
+                                style: {
+                                    fontSize: '14px'
+                                }
+                            },
                         },
                         series2: [
                             {

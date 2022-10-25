@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Zonas <span :style="'font-size: 20px'">(totales generales)</span></h1>
+        Acá encontrarás información relacionada con las ventas en cada zona del local, y los productos
+        que se venden en cada zona agrupados en sus respectivas categorías. Se muestra
+        la información de todas las ventas registradas hasta el momento.
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
         <br />
@@ -76,6 +79,13 @@ export default {
                             options1: {
                                 chart: { id: `${keyCat} $` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Montos Vendidos ($)',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series1: [
                                 {
@@ -86,6 +96,13 @@ export default {
                             options2: {
                                 chart: { id: `${keyCat} Cantidad` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Cantidad Vendida',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series2: [
                                 {

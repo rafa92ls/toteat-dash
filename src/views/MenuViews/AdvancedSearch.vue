@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Búsqueda Avanzada de ventas</h1>
+        Acá podrás buscar todas las ventas realizadas en el local. Los filtros no son
+        obligatorios por lo que no afecta dejarlos vacíos. Cada vez que ingreses un nuevo
+        filtro, recuerda hacer click en el botón Buscar para recargar la tabla.
         <br /><br />
         <hr />
         <br />
@@ -24,7 +27,7 @@
             <h5>Fecha</h5>
             <date-picker class="date-picker" v-model="fechaSearch" />
             <h5>Mesa</h5>
-            <input type="text" v-model="mesaSearch" placeholder="Ingrese el número de mesa"/>
+            <input type="text" v-model="mesaSearch" placeholder="Ingrese el número de mesa" />
             <h5>Zona</h5>
             <select name="Zona" id="zona" v-model="zonaSearch">
                 <option value="" disabled selected>Seleccione</option>
@@ -74,7 +77,7 @@ export default {
             headers: [
                 { text: "Id Venta", value: "id" },
                 { text: "Total", value: "total" },
-                { text: "Fecha Apertura", value: "fecha1" },
+                { text: "Fecha Apertura", value: "fecha1", sortable: true },
                 { text: "Fecha Cierre", value: "fecha2" },
                 { text: "Mesa", value: "mesa" },
                 { text: "Zona", value: "zona" },
@@ -102,7 +105,7 @@ export default {
     },
     methods: {
         ...mapMutations(["setIsLoading"]),
-        async fetchSelectData () {
+        async fetchSelectData() {
             try {
                 const { data, status } = await axios.get(
                     '/api/ventas/items-busqueda-avanzada',
@@ -110,13 +113,13 @@ export default {
 
                 if (status !== 200)
                     return 'error'
-                
+
                 this.waiterItems = data.waiters
                 this.cashierItems = data.cashiers
                 this.zoneItems = data.zones
-                
+
             } catch (error) {
-                
+
             }
         },
         async fetchDataCategorias() {

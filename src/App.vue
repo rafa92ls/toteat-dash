@@ -168,6 +168,8 @@ body {
 #demo {
   padding-left: 290px;
   transition: 0.3s ease;
+  background-image: linear-gradient(90deg, rgb(142, 158, 174) 20%, rgb(255, 255, 255) 100%);
+  /* height: 100%; */
 }
 
 #demo.collapsed {

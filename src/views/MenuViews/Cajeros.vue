@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Cajeros(as)</h1>
+        Acá encontraras la cantidad de ventas de cada cajero o cajera, de todas las ventas registradas hasta el momento.
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
         <br />
@@ -27,8 +28,10 @@ export default {
     data() {
         return {
             headers: [
-                { text: "Categoría", value: "categoria" },
+                { text: "Nombre", value: "categoria" },
                 { text: "Total Vendido", value: "total" },
+                { text: "Transacciones", value: "totalSales" },
+                { text: "Promedio por Transacciones", value: "promedioMesa" },
             ],
             items: [],
             chartValues: [],
@@ -55,7 +58,12 @@ export default {
                             total += values2.priceTotal
                         }
                     }
-                    this.items.push({ categoria: keyZone, total: moneyFormat(total) })
+                    this.items.push({
+                        categoria: keyZone,
+                        total: moneyFormat(total),
+                        totalSales: dataZone.transactions,
+                        promedioMesa: moneyFormat(Math.floor(total / dataZone.transactions))
+                    })
                 }
 
                 //Gráficos
@@ -63,6 +71,8 @@ export default {
                     let objValues = {}
                     const categoriasEntries = []
                     for (const [keyCat, dataCat] of Object.entries(dataZone)) {
+                        if (keyCat === 'transactions')
+                            continue
                         const xAxis = { categories: [] }
                         const dataGraph1 = []
                         const dataGraph2 = []
@@ -76,6 +86,13 @@ export default {
                             options1: {
                                 chart: { id: `${keyCat} $` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Montos Vendidos ($)',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series1: [
                                 {
@@ -86,6 +103,13 @@ export default {
                             options2: {
                                 chart: { id: `${keyCat} Cantidad` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Cantidad Vendida',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series2: [
                                 {

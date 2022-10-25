@@ -1,6 +1,7 @@
 <template>
-    <div>
+    <div class="mainContainer">
         <h1>Medios de Pago <span :style="'font-size: 20px'">(totales generales)</span></h1>
+        Acá encontrarás los distintos medios de pago utilizados por los clientes, de todas las ventas registradas hasta el momento.
         <br /><br />
         <hr />
         <br /><br />
@@ -20,6 +21,8 @@ export default {
             headers: [
                 { text: "Categoría", value: "categoria" },
                 { text: "Total Vendido", value: "total" },
+                { text: "Cantidad Transacciones", value: "transacciones" },
+                { text: "Promedio por Transacción", value: "promedio" },
             ],
             items: [],
             chartValues: [],
@@ -40,7 +43,12 @@ export default {
 
                 //Tabla Principal
                 for (const [keyCat, dataCat] of Object.entries(data)) {
-                    this.items.push({ categoria: keyCat, total: moneyFormat(dataCat) })
+                    this.items.push({
+                        categoria: keyCat,
+                        total: moneyFormat(dataCat.amountTotal),
+                        transacciones: dataCat.paymentAmount,
+                        promedio: moneyFormat(Math.floor(dataCat.amountTotal/dataCat.paymentAmount))
+                    })
                 }
             } catch (error) {
                 console.error(error)
@@ -60,5 +68,8 @@ th {
     table-layout: fixed;
     width: 300px;
     border: 1px solid black;
+}
+.mainContainer {
+    height: 100vh;
 }
 </style>

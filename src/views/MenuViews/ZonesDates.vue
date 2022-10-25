@@ -1,6 +1,9 @@
 <template>
     <div>
         <h1>Zonas por fecha</h1>
+        Acá encontrarás información relacionada con las ventas en cada zona del local, y los productos
+        que se venden en cada zona agrupados en sus respectivas categorías. Debes escoger una fecha
+        de inicio y de término para ver la información entre ese periodo de tiempo.
         <hr />
         Fecha inicial:
         <date-picker v-model="date1" />
@@ -57,6 +60,7 @@ export default {
             try {
                 this.setIsLoading(true)
                 this.items = []
+                this.chartValues = []
                 const { data, status } = await axios.get(
                     `/api/ventas/zonas/fechas/${fecha1}/${fecha2}`
                 )
@@ -92,6 +96,13 @@ export default {
                             options1: {
                                 chart: { id: `${keyCat} $` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Montos Vendidos ($)',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series1: [
                                 {
@@ -102,6 +113,13 @@ export default {
                             options2: {
                                 chart: { id: `${keyCat} Cantidad` },
                                 xaxis: xAxis,
+                                title: {
+                                    text: 'Cantidad Vendida',
+                                    align: 'center',
+                                    style: {
+                                        fontSize: '14px'
+                                    }
+                                },
                             },
                             series2: [
                                 {

@@ -1,19 +1,10 @@
 # toteat-dash
 
-## Project setup
-```
-npm install
-```
+Panel de información desarrollado para la prueba técnica de Toteat :)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+-Se accede con el usuario 'admin' y contraseña '123456'.
+-Se utilizó jwt para el manejo de sesiones.
+-Toda la información de las tablas y gráficos que se muestra en pantalla viene del backend toteat-dash-backend.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+https://toteat-dash.herokuapp.com/#/
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
