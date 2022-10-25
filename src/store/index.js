@@ -4,6 +4,7 @@ export default createStore({
   state: {
     user: null,
     token: null,
+    isLoading: false
   },
   mutations: {
     setUser(state, user) {
@@ -11,6 +12,9 @@ export default createStore({
     },
     setToken(state, token) {
       state.token = token;
+    },
+    setIsLoading(state, loading) {
+      state.isLoading = loading;
     },
   },
   actions: {},

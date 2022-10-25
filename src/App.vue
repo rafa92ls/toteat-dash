@@ -1,4 +1,5 @@
 <template>
+  <Loading v-model:active="isLoading" :can-cancel="false" :is-full-page="true" />
   <sidebar-menu v-model:collapsed="collapsed" :menu="menu" :theme="selectedTheme" :show-one-child="true"
     v-if="isLoggedIn && routeName !== 'login'" />
   <div id="demo" :class="[{ 'collapsed': collapsed }, { 'onmobile': isOnMobile }]">
@@ -13,8 +14,9 @@
 <script>
 import { h, markRaw } from 'vue'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import { useRouter } from 'vue-router'
+import Loading from 'vue-loading-overlay'
 
 const faIcon = (props) => {
   return {
@@ -28,6 +30,9 @@ const faIcon = (props) => {
 
 export default {
   name: 'App',
+  components: {
+    Loading
+  },
   data() {
     return {
       menu: [
@@ -143,6 +148,7 @@ export default {
   },
   computed: {
     ...mapGetters(['isLoggedIn']),
+    ...mapState(['isLoading']),
     routeName() {
       try {
         return useRouter().currentRoute.value.name        
