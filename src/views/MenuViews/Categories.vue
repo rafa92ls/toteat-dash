@@ -3,6 +3,14 @@
         <h1>Categorías <span>(totales generales)</span></h1>
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
+        <br />
+        <div v-for="dataGraficos of chartValues" class="graphContainer">
+            <h2>{{ dataGraficos.title }}</h2>
+            <div class="graphs">
+                <apexchart width="150%" type="bar" :options="dataGraficos.options1" :series="dataGraficos.series1" />
+                <apexchart width="150%" type="bar" :options="dataGraficos.options2" :series="dataGraficos.series2" />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -11,18 +19,15 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 import { moneyFormat } from '../../utils.js'
 export default {
+    name: 'Categorias',
     data() {
         return {
             headers: [
                 { text: "Categoría", value: "categoria" },
                 { text: "Total Vendido", value: "total" },
             ],
-            items: [
-                { categoria: "Bebidas", total: "123" },
-                { categoria: "Stephen Curry", total: "GSW" },
-                { categoria: "Stephen Curry", total: "GSW" },
-                { categoria: "Stephen Curry", total: "GSW" },
-            ]
+            items: [],
+            chartValues: [],
         }
     },
     created() {
@@ -32,13 +37,13 @@ export default {
         ...mapMutations(["setIsLoading"]),
         async fetchDataCategorias() {
             try {
-                console.log(moneyFormat(31232132321))
                 this.setIsLoading(true)
                 this.items = []
                 const { data, status } = await axios.get('/api/ventas/categorias')
                 if (status !== 200)
                     return 'error'
-                console.log(data)
+
+                //Tabla Principal
                 for (const [keyCat, dataCat] of Object.entries(data)) {
                     let total = 0
                     for (const values of Object.values(dataCat)) {
@@ -46,10 +51,45 @@ export default {
                     }
                     this.items.push({ categoria: keyCat, total: moneyFormat(total) })
                 }
-            } catch (error) {
-                console.log('error', error)
-            } finally {
 
+                //Gráficos
+                for (const [keyCat, dataCat] of Object.entries(data)) {
+                    const xAxis = { categories: [] }
+                    const dataGraph1 = []
+                    const dataGraph2 = []
+                    for (const [keyProd, dataProd] of Object.entries(dataCat)) {
+                        xAxis.categories.push(keyProd)
+                        dataGraph1.push(dataProd.priceTotal)
+                        dataGraph2.push(dataProd.quantityTotal)
+                    }
+                    const objValues = {
+                        title: keyCat,
+                        options1: {
+                            chart: { id: `${keyCat} $` },
+                            xaxis: xAxis,
+                        },
+                        series1: [
+                            {
+                                name: "$",
+                                data: dataGraph1,
+                            },
+                        ],
+                        options2: {
+                            chart: { id: `${keyCat} Cantidad` },
+                            xaxis: xAxis,
+                        },
+                        series2: [
+                            {
+                                name: "Cantidad",
+                                data: dataGraph2,
+                            },
+                        ],
+                    }
+                    this.chartValues.push(objValues)
+                }
+            } catch (error) {
+                console.error(error)
+            } finally {
                 this.setIsLoading(false)
             }
         }
@@ -65,5 +105,10 @@ th {
     table-layout: fixed;
     width: 300px;
     border: 1px solid black;
+}
+
+.graphs {
+    display: flex;
+    flex-direction: row;
 }
 </style>
