@@ -4,6 +4,9 @@
         Acá podrás buscar todas las ventas realizadas en el local. Los filtros no son
         obligatorios por lo que no afecta dejarlos vacíos. Cada vez que ingreses un nuevo
         filtro, recuerda hacer click en el botón Buscar para recargar la tabla.
+        <br /> <br />
+        Puedes ver el detalle de cada venta haciendo click en la flecha ubicada a la izquierda
+        de la fila.
         <br /><br />
         <hr />
         <br />
