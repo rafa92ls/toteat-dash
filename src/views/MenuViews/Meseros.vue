@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Zonas <span :style="'font-size: 20px'">(totales generales)</span></h1>
+        <h1>Meseros(as)</h1>
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
         <br />
@@ -23,7 +23,7 @@ import axios from 'axios'
 import { mapMutations } from 'vuex'
 import { moneyFormat } from '../../utils.js'
 export default {
-    name: 'Zonas',
+    name: 'Meseros',
     data() {
         return {
             headers: [
@@ -43,7 +43,7 @@ export default {
             try {
                 this.setIsLoading(true)
                 this.items = []
-                const { data, status } = await axios.get('/api/ventas/zonas')
+                const { data, status } = await axios.get('/api/ventas/meseros')
                 if (status !== 200)
                     return 'error'
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Categorías por fecha</h1>
+        <h1>Categorías y Productos por fecha</h1>
         <hr />
         Fecha inicial:
         <Datepicker v-model="date1" />
@@ -54,7 +54,6 @@ export default {
                 this.setIsLoading(true)
                 this.items = []
                 this.chartValues = []
-                console.log
                 const { data, status } = await axios.get(
                     `/api/ventas/categorias/fechas/${fecha1}/${fecha2}`
                 )
@@ -115,7 +114,6 @@ export default {
     watch: {
         date1: function (val) {
             if (this.date2) {
-                console.log('buscar1')
                 const fecha1 = val.toISOString().split('T')[0]
                 const fecha2 = this.date2.toISOString().split('T')[0]
                 this.fetchDataCategorias(fecha1, fecha2)
@@ -123,7 +121,6 @@ export default {
         },
         date2: function (val) {
             if (this.date1) {
-                console.log('buscar2')
                 const fecha1 = this.date1.toISOString().split('T')[0]
                 const fecha2 = val.toISOString().split('T')[0]
                 this.fetchDataCategorias(fecha1, fecha2)

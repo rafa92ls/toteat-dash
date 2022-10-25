@@ -46,7 +46,7 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-circle-play' })
         },
         {
-          title: 'Categorías',
+          title: 'Categorías y Productos',
           icon: faIcon({ icon: 'fa-solid fa-list-ul' }),
           child: [
             {
@@ -56,22 +56,6 @@ export default {
             },
             {
               href: '/categorias/fechas',
-              title: 'Por fecha',
-              icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
-            }
-          ]
-        },
-        {
-          title: 'Productos',
-          icon: faIcon({ icon: 'fa-solid fa-bowl-food' }),
-          child: [
-            {
-              href: '/productos',
-              title: 'Totales',
-              icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
-            },
-            {
-              href: '/productos/fechas',
               title: 'Por fecha',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
@@ -98,13 +82,13 @@ export default {
           icon: faIcon({ icon: 'fa-solid fa-users' }),
           child: [
             {
-              href: '/personal',
-              title: 'Totales',
+              href: '/meseros',
+              title: 'Meseros(as)',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             },
             {
-              href: '/personal/fechas',
-              title: 'Por fecha',
+              href: '/cajeros',
+              title: 'Cajeros(as)',
               icon: faIcon({ icon: 'fa-solid fa-file-alt', size: 'sm' })
             }
           ]

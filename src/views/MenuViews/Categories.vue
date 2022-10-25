@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Categorías <span>(totales generales)</span></h1>
+        <h1>Categorías y Productos <span :style="'font-size: 20px'">(totales generales)</span></h1>
         <hr />
         <EasyDataTable :headers="headers" :items="items" :hide-footer="true" />
         <br />

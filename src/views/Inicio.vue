@@ -13,7 +13,7 @@
       <li>Personal</li>
       <li>Búsqueda avanzada</li>
     </ul>
-    <p>ads</p>
+    <p>Podrás ver el total de ventas y cantidades vendidas, para todo el periodo o por fechas específicas (por ejemplo de 18-03-2019 a 19-03-2019)</p>
   </div>
 </template>
 
