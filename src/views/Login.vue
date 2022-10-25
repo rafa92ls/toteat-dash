@@ -60,6 +60,7 @@ export default {
         this.setUser(this.usuario)
         this.setToken(data.token)
         localStorage.setItem('Token', data.token)
+        axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('Token')}`
         router.push('/inicio')
 
       } catch (error) {
