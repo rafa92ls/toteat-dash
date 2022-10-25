@@ -12,6 +12,7 @@
       <li>Productos</li>
       <li>Zonas</li>
       <li>Personal</li>
+      <li>Medios de pago</li>
       <li>Búsqueda avanzada</li>
     </ul>
     <p>Podrás ver el total de ventas y cantidades vendidas, para todo el periodo o por fechas específicas (desde el 01-01-2019

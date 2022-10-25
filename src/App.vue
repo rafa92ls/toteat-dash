@@ -2,8 +2,8 @@
   <Loading v-model:active="isLoading" :can-cancel="false" :is-full-page="true" />
   <sidebar-menu v-model:collapsed="collapsed" :menu="menu" :theme="selectedTheme" :show-one-child="true"
     v-if="isLoggedIn && routeName !== 'login'" />
-  <div id="demo" :class="[{ 'collapsed': collapsed }, { 'onmobile': isOnMobile }]">
-    <div class="demo">
+  <div id="content" :class="[{ 'collapsed': collapsed }, { 'onmobile': isOnMobile }]">
+    <div class="content">
       <div class="container">
         <router-view />
       </div>
@@ -140,9 +140,9 @@ export default {
     ...mapState(['isLoading']),
     routeName() {
       try {
-        return useRouter().currentRoute.value.name        
+        return useRouter().currentRoute.value.name
       } catch (error) {
-        return null        
+        return null
       }
     }
   },
@@ -165,37 +165,58 @@ body {
   color: #262626;
 }
 
-#demo {
+#content {
   padding-left: 290px;
   transition: 0.3s ease;
-  background-image: linear-gradient(90deg, rgb(142, 158, 174) 20%, rgb(255, 255, 255) 100%);
+  background-color: rgb(245, 245, 245);
   /* height: 100%; */
 }
 
-#demo.collapsed {
+#content.collapsed {
   padding-left: 65px;
 }
 
-#demo.onmobile {
+#content.onmobile {
   padding-left: 65px;
 }
 
-.sidebar-overlay {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background-color: #000;
-  opacity: 0.5;
-  z-index: 900;
-}
-
-.demo {
+.content {
   padding: 50px;
 }
 
 .container {
   max-width: 900px;
 }
+
+.v-sidebar-menu .vsm--header {
+  background-color: rgb(0, 162, 211);
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--header {
+  color: white !important;
+  font-size: 20px;
+}
+
+.v-sidebar-menu.vsm_white-theme {
+  background-color: rgb(50, 54, 69) !important;
+}
+
+.v-sidebar-menu .vsm--title {
+  color: white !important;
+}
+
+.v-sidebar-menu.vsm_white-theme.vsm_expanded .vsm--link_level-1.vsm--link_open {
+  background-color: rgb(32,35,52) !important;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--dropdown {
+  background-color: rgb(42, 45, 63) !important;
+}
+
+.v-sidebar-menu.vsm_white-theme .vsm--badge_default, .v-sidebar-menu.vsm_white-theme .vsm--toggle-btn {
+  border: 1px solid rgb(50, 54, 69);
+} 
 </style>
