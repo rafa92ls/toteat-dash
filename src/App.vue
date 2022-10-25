@@ -94,6 +94,11 @@ export default {
           ]
         },
         {
+          href: '/medios-pago',
+          title: 'Medios de pago',
+          icon: faIcon({ icon: 'fa-solid fa-credit-card' }),
+        },
+        {
           href: '/busqueda-avanzada',
           title: 'Busqueda avanzada',
           icon: faIcon({ icon: 'fa-solid fa-magnifying-glass' }),

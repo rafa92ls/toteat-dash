@@ -8,6 +8,7 @@ import ZonesDates from '../views/MenuViews/ZonesDates'
 import Meseros from '../views/MenuViews/Meseros'
 import Cajeros from '../views/MenuViews/Cajeros'
 import AdvancedSearch from '../views/MenuViews/AdvancedSearch'
+import PaymentMethods from '../views/MenuViews/PaymentMethods'
 
 const routes = [
   {
@@ -49,6 +50,11 @@ const routes = [
     path: '/cajeros',
     name: 'cajeros',
     component: Cajeros
+  },
+  {
+    path: '/medios-pago',
+    name: 'mediosPago',
+    component: PaymentMethods
   },
   {
     path: '/busqueda-avanzada',

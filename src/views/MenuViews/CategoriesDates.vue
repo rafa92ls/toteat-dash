@@ -3,9 +3,9 @@
         <h1>Categorías y Productos por fecha</h1>
         <hr />
         Fecha inicial:
-        <Datepicker v-model="date1" />
+        <date-picker v-model="date1" />
         Fecha final:
-        <Datepicker v-model="date2" />
+        <date-picker v-model="date2" />
         <br /><br />
         <div v-if="!date1 || !date2">
             Escoge una fecha de inicio y término para mostrar resultados
