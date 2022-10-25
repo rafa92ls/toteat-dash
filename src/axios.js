@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from './router/index'
 
-axios.defaults.baseURL = 'http://localhost:8080'
+axios.defaults.baseURL = 'https://toteat-dash-backend.herokuapp.com/'
 axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('Token')}`
 
 axios.interceptors.response.use(response => {
